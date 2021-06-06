@@ -222,11 +222,9 @@ class YoutubeDataApi(YouTubeDataAPI):
         super().__init__(key, **kwargs)
 
 
-
-# key = 'AIzaSyCDbqdE_kf1NzF0VXJW-fjAgEIWFmHJumQ'
-key2 = 'AIzaSyBCta_zfuGC4_ycQjk6mjggP0It5Onps-4'
+key = ''
 key_word_ls =['minecraft','minecraft speedrun','apex lengend','new computer','programing 2021','electric guitar performance','fortnite','mario odyssey','botw','keyboard']
-yt = YouTubeDataAPI(key2)
+yt = YouTubeDataAPI(key)
 
 d = {}
 for s in key_word_ls:
