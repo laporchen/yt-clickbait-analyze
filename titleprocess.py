@@ -46,6 +46,11 @@ def analyzeBait(str):
         if s.isupper() and len(s) > 1:
             if s.lower() in nltk.corpus.words.words() or s in nltk.corpus.words.words():
                 cap += 1
+    # clickbait:words put in stars, example: how to *really* win the game
+    star = 0
+    for words in token:
+        if str.find("*"+words+"*") != -1:
+            star += 1
     # clickbait:putting brackets in the title, example: UFO evidence! (truth)
     bracket = 0
     if token[-1].find("(") != -1 and token[-1].find(")") != -1:
