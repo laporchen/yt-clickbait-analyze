@@ -5,12 +5,7 @@ import os
 import time
 
 def isEnglish(s):
-    try:
-        s.encode(encoding='utf-8').decode('ascii')
-    except UnicodeDecodeError:
-        return False
-    else:
-        return True
+    return s.isascii()
 
 def openJson(path):
     with open(path)as f:

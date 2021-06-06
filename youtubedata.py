@@ -221,9 +221,15 @@ class YoutubeDataApi(YouTubeDataAPI):
     def __init__(self, key, **kwargs):
         super().__init__(key, **kwargs)
 
+def openJson(path):
+    with open(path)as f:
+        data = json.load(f, strict=False)
+        return data
 
-key = ''
-key_word_ls =['minecraft','minecraft speedrun','apex lengend','new computer','programing 2021','electric guitar performance','fortnite','mario odyssey','botw','keyboard']
+key_path = "apikey.json"
+key = openJson(key_path)["key"]
+key_word_path = "keywords.json"
+key_word_ls = openJson(key_word_path)["keywords"]
 yt = YouTubeDataAPI(key)
 
 d = {}
@@ -240,7 +246,7 @@ for s in key_word_ls:
         list_of_video.append({'title':i['video_title'],'view':i['video_view_count']})
 
     d[s] = list_of_video
-f = open('result2.json','w')
+f = open('youtubeRequest.json','w')
 json.dump(d,f,indent=1)
 f.close()
 
