@@ -2,6 +2,7 @@
     "apex lengend": {
         "clickbait_avg_views": 220452.68421052632,
         "noclickbait_avg_views": 558823.6052631579,
+        "clickbait_noclickbait_avg_ratio": 0.3944942234620029,
         "clickbait_per_video": 0.3333333333333333,
         "video_counts": 57,
         "clickbait_video_count": 19,

@@ -2,6 +2,7 @@
     "fortnite": {
         "clickbait_avg_views": 840028.1964285715,
         "noclickbait_avg_views": 608186.2352941176,
+        "clickbait_noclickbait_avg_ratio": 1.3812022497061869,
         "clickbait_per_video": 0.6222222222222222,
         "video_counts": 90,
         "clickbait_video_count": 56,

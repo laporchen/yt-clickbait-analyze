@@ -1,5 +1,6 @@
 
 import json
+from typing import final
 import nltk
 import os
 import time
@@ -64,10 +65,6 @@ def analyzeBait(str):
 
 start_time = time.time()
 if __name__ == "__main__":
-    path = "youtube.json"
-    keywordsPath = "keywords.json"
-    keywords = openJson(keywordsPath)
-    data = openJson(path)
     output = "result/result"
     totalcViews = 0
     totalnocViews = 0
@@ -76,67 +73,74 @@ if __name__ == "__main__":
     totalRESULT = []
     totalVIEW = []
     totalTITLE = []
-    for kw in keywords["keywords"]:
-        cViews = 0
-        nocViews = 0
-        cVids = 0
-        nocVids = 0
-        keywordjson = {}
-        finalResult = {}
-        viewLIST = []
-        titleLIST = []
-        resultLIST = []
-        keywordjson = {}
-        print("Now on the word", kw)
-        i = 0
-        for video in data[kw]:
-            try:
-                result = analyzeBait(video["title"].replace(",", " "))
-                if(result != "A"):
-                    if(result == True):
-                        cViews = cViews + int(video["view"])
-                        cVids = cVids + 1
-                        totalcViews = totalcViews + int(video["view"])
-                        totalcVids = totalcVids + 1
-                    else:
-                        nocViews = nocViews + int(video["view"])
-                        nocVids = nocVids + 1
-                        totalnocViews = totalnocViews + int(video["view"])
-                        totalnocVids = totalnocVids + 1
-                    resultData = {}
-                    titleLIST.append(video["title"])
-                    viewLIST.append(video["view"])
-                    resultLIST.append(result)
-                    totalTITLE.append(video["title"])
-                    totalVIEW.append(video["view"])
-                    totalRESULT.append(result)
-            except:
-                continue
-        if(cVids == 0):
-            finalResult["clickbait_avg_views"] = -1
-        else:
-            finalResult["clickbait_avg_views"] = cViews/cVids
-        if(nocVids == 0):
-            finalResult["noclickbait_avg_views"] = -1
-        else:
-            finalResult["noclickbait_avg_views"] = nocViews/nocVids
-        if(nocVids + cVids == 0):
-            finalResult["clickbait_per_video"] = -1
-        else:
-            finalResult["clickbait_per_video"] = cVids/(cVids + nocVids)
+    for i in range(4):
+        index = i + 1
+        path = "youtube_"+str(index)+".json"
+        data = openJson(path)
+        keywordsPath = "keywords_"+str(index)+".json"
+        keywords = openJson(keywordsPath)
+        for kw in keywords["keywords"]:
+            cViews = 0
+            nocViews = 0
+            cVids = 0
+            nocVids = 0
+            keywordjson = {}
+            finalResult = {}
+            viewLIST = []
+            titleLIST = []
+            resultLIST = []
+            keywordjson = {}
+            print("Now on the word", kw)
+            i = 0
+            for video in data[kw]:
+                try:
+                    result = analyzeBait(video["title"].replace(",", " "))
+                    if(result != "A"):
+                        if(result == True):
+                            cViews = cViews + int(video["view"])
+                            cVids = cVids + 1
+                            totalcViews = totalcViews + int(video["view"])
+                            totalcVids = totalcVids + 1
+                        else:
+                            nocViews = nocViews + int(video["view"])
+                            nocVids = nocVids + 1
+                            totalnocViews = totalnocViews + int(video["view"])
+                            totalnocVids = totalnocVids + 1
+                        resultData = {}
+                        titleLIST.append(video["title"])
+                        viewLIST.append(video["view"])
+                        resultLIST.append(result)
+                        totalTITLE.append(video["title"])
+                        totalVIEW.append(video["view"])
+                        totalRESULT.append(result)
+                except:
+                    continue
+            if(cVids == 0):
+                finalResult["clickbait_avg_views"] = -1
+            else:
+                finalResult["clickbait_avg_views"] = cViews/cVids
+            if(nocVids == 0):
+                finalResult["noclickbait_avg_views"] = -1
+            else:
+                finalResult["noclickbait_avg_views"] = nocViews/nocVids
+            finalResult["clickbait_noclickbait_avg_ratio"] = (cViews/cVids) / (nocViews/nocVids)
+            if(nocVids + cVids == 0):
+                finalResult["clickbait_per_video"] = -1
+            else:
+                finalResult["clickbait_per_video"] = cVids/(cVids + nocVids)
 
-        finalResult["video_counts"] = cVids + nocVids
-        finalResult["clickbait_video_count"] = cVids
-        finalResult["noclclickbait_video_count"] = nocVids
-        finalResult["total_views"] = cViews + nocViews
-        finalResult["clickbait_views"] = cViews
-        finalResult["noclclickbait_views"] = nocViews
+            finalResult["video_counts"] = cVids + nocVids
+            finalResult["clickbait_video_count"] = cVids
+            finalResult["noclclickbait_video_count"] = nocVids
+            finalResult["total_views"] = cViews + nocViews
+            finalResult["clickbait_views"] = cViews
+            finalResult["noclclickbait_views"] = nocViews
 
-        finalResult["result"] = resultLIST
-        finalResult["view"] = viewLIST
-        finalResult["title"] = titleLIST
-        keywordjson[kw] = finalResult
-        writeJson(output+"_"+kw+".json", keywordjson)
+            finalResult["result"] = resultLIST
+            finalResult["view"] = viewLIST
+            finalResult["title"] = titleLIST
+            keywordjson[kw] = finalResult
+            writeJson(output+"_"+kw+".json", keywordjson)
     cavg = 0
     if(totalcVids == 0):
         cavg = -1
@@ -152,8 +156,10 @@ if __name__ == "__main__":
         cpv = -1
     else:
         cpv = totalcVids/(totalcVids + totalnocVids)
-    total = {"clickbait_per_video": cpv, "clickbait_avg_views": cavg,
+    total = {
+             "clickbait_per_video": cpv, "clickbait_avg_views": cavg,
              "noclickbait_avg_views": nocavg, "video_count": totalcVids + totalnocVids,
+             "clickbait_noclickbait_avg_ratio":(totalcViews/totalcVids)/ (totalnocViews/totalnocVids),
              "clickbait_video_count": totalcVids, "noclclickbait_video_count": totalnocVids,
              "total_views": totalcViews + totalnocViews,
              "clickbait_views": cViews,

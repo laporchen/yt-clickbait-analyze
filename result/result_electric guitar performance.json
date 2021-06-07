@@ -2,6 +2,7 @@
     "electric guitar performance": {
         "clickbait_avg_views": 6130220.285714285,
         "noclickbait_avg_views": 5238819.397590362,
+        "clickbait_noclickbait_avg_ratio": 1.170153009766653,
         "clickbait_per_video": 0.14432989690721648,
         "video_counts": 97,
         "clickbait_video_count": 14,

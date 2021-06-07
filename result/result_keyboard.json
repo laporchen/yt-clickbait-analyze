@@ -2,6 +2,7 @@
     "keyboard": {
         "clickbait_avg_views": 1435407.2173913044,
         "noclickbait_avg_views": 2709292.6,
+        "clickbait_noclickbait_avg_ratio": 0.5298088576299601,
         "clickbait_per_video": 0.24731182795698925,
         "video_counts": 93,
         "clickbait_video_count": 23,

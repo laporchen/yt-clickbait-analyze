@@ -228,25 +228,27 @@ def openJson(path):
 
 key_path = "apikey.json"
 apikey = openJson(key_path)["key"]
-key_word_path = "keywords.json"
+key_word_path = "keywords_4.json"
 key_word_ls = openJson(key_word_path)["keywords"]
 yt = YouTubeDataAPI(apikey)
 d = {}
 for s in key_word_ls:
     ls = []
-    print(s)
-    screachs = yt.search(s,max_results=5,parser=None,relevance_language='en')
-    for i in screachs:
-        ls.append(i['id']['videoId'])
+    try:
+        screachs = yt.search(s,max_results=120,parser=None,relevance_language='en')
+        for i in screachs:
+            ls.append(i['id']['videoId'])
 
-    req = yt.get_video_metadata(ls,part = ["statistics","snippet"])
-    list_of_video = []
-    
-    for i in req:
-        list_of_video.append({'title':i['video_title'],'view':i['video_view_count']})
+        req = yt.get_video_metadata(ls,part = ["statistics","snippet"])
+        list_of_video = []
 
-    d[s] = list_of_video
-f = open('youtubeRequest.json','w')
+        for i in req:
+            list_of_video.append({'title':i['video_title'],'view':i['video_view_count']})
+
+        d[s] = list_of_video
+    except:
+        continue
+f = open('youtube_4.json','w')
 json.dump(d,f,indent=1)
 f.close()
 

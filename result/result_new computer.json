@@ -2,6 +2,7 @@
     "new computer": {
         "clickbait_avg_views": 1740388.4285714286,
         "noclickbait_avg_views": 598776.7435897436,
+        "clickbait_noclickbait_avg_ratio": 2.9065731880927372,
         "clickbait_per_video": 0.15217391304347827,
         "video_counts": 92,
         "clickbait_video_count": 14,

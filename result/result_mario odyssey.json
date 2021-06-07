@@ -2,6 +2,7 @@
     "mario odyssey": {
         "clickbait_avg_views": 3345401.3703703703,
         "noclickbait_avg_views": 6178647.5,
+        "clickbait_noclickbait_avg_ratio": 0.5414455785623585,
         "clickbait_per_video": 0.2967032967032967,
         "video_counts": 91,
         "clickbait_video_count": 27,

@@ -2,6 +2,7 @@
     "botw": {
         "clickbait_avg_views": 828265.5806451613,
         "noclickbait_avg_views": 804702.0,
+        "clickbait_noclickbait_avg_ratio": 1.0292823686845085,
         "clickbait_per_video": 0.36046511627906974,
         "video_counts": 86,
         "clickbait_video_count": 31,

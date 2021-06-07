@@ -2,6 +2,7 @@
     "programing 2021": {
         "clickbait_avg_views": 116114.55555555556,
         "noclickbait_avg_views": 75176.15,
+        "clickbait_noclickbait_avg_ratio": 1.5445664024501862,
         "clickbait_per_video": 0.10112359550561797,
         "video_counts": 89,
         "clickbait_video_count": 9,

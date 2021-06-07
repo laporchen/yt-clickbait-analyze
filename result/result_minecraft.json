@@ -2,6 +2,7 @@
     "minecraft": {
         "clickbait_avg_views": 2005095.388888889,
         "noclickbait_avg_views": 3826873.4680851065,
+        "clickbait_noclickbait_avg_ratio": 0.523951315770103,
         "clickbait_per_video": 0.43373493975903615,
         "video_counts": 83,
         "clickbait_video_count": 36,
